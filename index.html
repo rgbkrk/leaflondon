@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet"
+        href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <style>
+      #map {
+        height: 600px;
+        width: 100%;
+      }
+    </style>
+
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <script type="text/javascript">
+var ourMap = L.map('map');
+var baseLayer = L.tileLayer(
+  'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+);
+
+baseLayer.addTo(ourMap);
+
+var markers = {
+  "#mozfest": [51.50102, 0.00680],
+  "Rackspace London": [51.5020349,-0.4283453]
+};
+
+//51.4987632,-0.2128204
+ourMap.setView([51.5073509288821,-0.212775836483401], 12);
+
+for (var label in markers) {
+  if (markers.hasOwnProperty(label)) {
+    var ourMarker = L.marker(markers[label]);
+    ourMarker.addTo(ourMap);
+    ourMarker.bindPopup(label)
+  }
+}
+
+    </script>
+  </body>
+</html>
+
